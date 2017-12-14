@@ -1,4 +1,4 @@
-# lib-node-steam
+# steam-api-web
 
 [![Build Status](https://travis-ci.org/atreslesne/lib-node-morpher-ru.svg?branch=master)](https://travis-ci.org/atreslesne/lib-node-steam)
 [![Coverage Status](https://coveralls.io/repos/github/atreslesne/lib-node-steam/badge.svg?branch=master)](https://coveralls.io/github/atreslesne/lib-node-steam?branch=master)
@@ -12,13 +12,13 @@
 ## Установка библиотеки
 
 ```bash
-$ npm install steam-web-api
+$ npm install steam-api-web
 ```
 
 или
 
 ```
-$ yarn add steam-web-api
+$ yarn add steam-api-web
 ```
 
 ## Инициализация библиотеки
@@ -28,7 +28,7 @@ $ yarn add steam-web-api
 для работы с некоторыми методами.
 
 ```js
-const Steam = require('steam-web-api');
+const Steam = require('steam-api-web');
 const steam = new Steam('optional key');
 ```
 
@@ -52,7 +52,7 @@ const steam = new Steam('optional key');
 * `maxLength` - максимальная длина текста новости (по-умолчанию 300).
 
 ```js
-const Steam = require('steam-web-api');
+const Steam = require('steam-api-web');
 const steam = new Steam();
 
 steam.getNewsForApp(440, 5, 200)
@@ -82,7 +82,7 @@ steam.getNewsForApp(440, 5, 200)
 * `gameId` - идентификатор игры.
 
 ```js
-const Steam = require('steam-web-api');
+const Steam = require('steam-api-web');
 const steam = new Steam();
 
 steam.getGlobalAchievementPercentagesForApp(440)
@@ -111,7 +111,7 @@ steam.getGlobalAchievementPercentagesForApp(440)
 * `players` - идентификатор или массив идентификаторов пользователей.
 
 ```js
-const Steam = require('steam-web-api');
+const Steam = require('steam-api-web');
 const steam = new Steam('STEAM_API_KEY');
 
 steam.getPlayerSummaries('76561198030288194')
@@ -153,7 +153,7 @@ steam.getPlayerSummaries('76561198030288194')
 * `playerId` - идентификатор игрока.
 
 ```js
-const Steam = require('steam-web-api');
+const Steam = require('steam-api-web');
 const steam = new Steam('STEAM_API_KEY');
 
 steam.getFriendList('76561198030288194')
@@ -183,7 +183,7 @@ steam.getFriendList('76561198030288194')
 * `playerId` - идентификатор пользователя.
 
 ```js
-const Steam = require('steam-web-api');
+const Steam = require('steam-api-web');
 const steam = new Steam('STEAM_API_KEY');
 
 steam.getPlayerAchievements(440, '76561198030288194')
@@ -215,7 +215,7 @@ Team Fortress 2
 * `playerId` - идентификатор пользователя.
 
 ```js
-const Steam = require('steam-web-api');
+const Steam = require('steam-api-web');
 const steam = new Steam('STEAM_API_KEY');
 
 steam.getOwnedGames('76561198030288194')
@@ -251,7 +251,7 @@ steam.getOwnedGames('76561198030288194')
 * `language` - язык (по-умолчанию english).
 
 ```js
-const Steam = require('steam-web-api');
+const Steam = require('steam-api-web');
 const steam = new Steam('STEAM_API_KEY');
 
 steam.getSchemaForGame('305620', 'russian')
