@@ -8,7 +8,7 @@
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/.bin/mocha -R spec",
     "coverage": "NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -u exports -R spec test/**/test*.js",
-    "coveralls": "NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report icovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -fr ./coverage"
+    "coveralls": "NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -fr ./coverage"
   },
   "repository": {
     "type": "git",
