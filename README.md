@@ -17,7 +17,7 @@ $ npm install steam-api-web
 
 или
 
-```
+```bash
 $ yarn add steam-api-web
 ```
 
