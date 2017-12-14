@@ -7,6 +7,7 @@ const EntityNews = require('../src/entity/entityNews');
 const EntityAchievements = require('../src/entity/entityAchievements');
 const EntityPlayers = require('../src/entity/entityPlayers');
 const EntityFriends = require('../src/entity/entityFriends');
+const EntityPlayerAchievements = require('../src/entity/entityPlayerAchievements');
 
 const STEAM_KEY = process.env.STEAM_KEY;
 
@@ -72,6 +73,19 @@ describe('Steam', function () {
                 assert.equal(res.url, 'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?steamid=76561198030288194&key=' + STEAM_KEY + '&relationship=friend');
                 assert.equal(res.method, 'getFriendList');
                 assert.isTrue(res.friends.length > 0);
+                done();
+            })
+            .catch(err => done(err));
+    });
+
+    it('getPlayerAchievements', (done) => {
+        steam.getPlayerAchievements(440, '76561198030288194')
+            .then(res => {
+                assert.instanceOf(res, EntityPlayerAchievements);
+                assert.equal(res.url, 'http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid=440&steamid=76561198030288194&key=' + STEAM_KEY);
+                assert.equal(res.method, 'getPlayerAchievements');
+                assert.equal(res.gameName, 'Team Fortress 2');
+                assert.isTrue(res.achievements.length > 0);
                 done();
             })
             .catch(err => done(err));

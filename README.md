@@ -170,3 +170,36 @@ steam.getFriendList('76561198030288194')
     since: 1312738668
 }]
 ```
+
+### getPlayerAchievements
+
+Метод возвращает информацию о достижениях игрока в указанной игре.
+Для вызова метода необходим ключ Steam API Key.
+
+`getPlayerAchievements(appId, playerId)`
+
+* `appid` - идентификатор игры;
+* `playerId` - идентификатор пользователя.
+
+```js
+const Steam = require('steam-web-api');
+const steam = new Steam('STEAM_API_KEY');
+
+steam.getPlayerAchievements(440, '76561198030288194')
+    .then(result => {
+        console.log(result.gameName);
+        console.dir(result.achievements);
+    })
+    .catch(err => console.error(err.message));
+```
+
+Результат:
+
+```js
+Team Fortress 2
+[{
+    name: 'TF_PLAY_GAME_EVERYCLASS',
+    achieved: false,
+    date: 0
+}]
+```

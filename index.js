@@ -33,6 +33,13 @@ class Steam {
             'steamid': playerId
         });
     }
+
+    getPlayerAchievements(appId, playerId) {
+        return this.client.request('getPlayerAchievements', {
+            'appid': appId,
+            'steamid': playerId
+        });
+    }
 }
 
 module.exports = Steam;

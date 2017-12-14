@@ -8,6 +8,7 @@ const EntityNews = require('./entity/entityNews');
 const EntityAchievements = require('./entity/entityAchievements');
 const EntityPlayers = require('./entity/entityPlayers');
 const EntityFriends = require('./entity/entityFriends');
+const EntityPlayerAchievements = require('./entity/entityPlayerAchievements');
 
 class SteamClient {
     static get methods() {
@@ -67,6 +68,18 @@ class SteamClient {
                 },
                 'key': true,
                 'entity': (data, method, url) => { return new EntityFriends(data, method, url); }
+            },
+            'getPlayerAchievements': {
+                'name': 'getPlayerAchievements',
+                'url': {
+                    'protocol': 'http',
+                    'host': 'api.steampowered.com',
+                    'path': '/ISteamUserStats/GetPlayerAchievements/v0001/'
+                },
+                'args': ['appid', 'steamid'],
+                'defaults': {},
+                'key': true,
+                'entity': (data, method, url) => { return new EntityPlayerAchievements(data, method, url); }
             }
         }
     }
