@@ -20,6 +20,13 @@ class Steam {
             'gameid': gameId
         });
     }
+
+    getPlayerSummaries(players) {
+        if (!Array.isArray(players)) players = [players];
+        return this.client.request('getPlayerSummaries', {
+            'steamids': players
+        });
+    }
 }
 
 module.exports = Steam;

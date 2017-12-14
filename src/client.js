@@ -6,6 +6,7 @@ const SteamError = require('./error');
 
 const EntityNews = require('./entity/entityNews');
 const EntityAchievements = require('./entity/entityAchievements');
+const EntityPlayers = require('./entity/entityPlayers');
 
 class SteamClient {
     static get methods() {
@@ -39,6 +40,18 @@ class SteamClient {
                 },
                 'key': false,
                 'entity': (data, method, url) => { return new EntityAchievements(data, method, url); }
+            },
+            'getPlayerSummaries': {
+                'name': 'getPlayerSummaries',
+                'url': {
+                    'protocol': 'http',
+                    'host': 'api.steampowered.com',
+                    'path': '/ISteamUser/GetPlayerSummaries/v0002/'
+                },
+                'args': ['steamids'],
+                'defaults': {},
+                'key': true,
+                'entity': (data, method, url) => { return new EntityPlayers(data, method, url); }
             }
         }
     }
@@ -80,10 +93,12 @@ class SteamClient {
 
         method = SteamClient.methods[method];
         if (method.key && !this.key) throw new SteamError('KEY_REQUIRED', { 'method': method.name });
+        if (method.key) args['key'] = this.key;
 
         for (let arg of method.args) {
             if (!(arg in args)) {
                 if (!(arg in method.defaults)) throw new SteamError('MISSING_ARGUMENT', { 'arg': arg });
+                if (Array.isArray(arg)) arg = arg.join(',');
                 args[arg] = method.defaults[arg];
             }
         }

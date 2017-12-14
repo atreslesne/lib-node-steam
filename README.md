@@ -99,3 +99,44 @@ steam.getGlobalAchievementPercentagesForApp(440)
     percent: 53.728801727294922
 }]
 ```
+
+### getPlayerSummaries
+
+Метод возвращает информацию о профиле пользователя по указанному идентификатору/идентификаторам.
+
+`getPlayerSummaries([players])`
+
+* `players` - идентификатор или массив идентификаторов пользователей.
+
+```js
+const Steam = require('steam-web-api');
+const steam = new Steam();
+
+steam.getPlayerSummaries('76561198030288194')
+    .then(result => {
+        console.dir(result.players);
+    })
+    .catch(err => console.error(err.message))
+```
+
+Результат:
+
+```js
+[{
+    'id': '76561198030288194',
+    'name': 'Atres Lesne',
+    'realname': 'Vladimir',
+    'url': 'http://steamcommunity.com/id/atres/',
+    'avatar': {
+        'small': 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/25/253e5467ec2594e27d758508cbe6f176a4f6d4c7.jpg',
+        'medium': 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/25/253e5467ec2594e27d758508cbe6f176a4f6d4c7_medium.jpg',
+        'full': 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/25/253e5467ec2594e27d758508cbe6f176a4f6d4c7_full.jpg'
+    },
+    'created': 1284103613,
+    'location': {
+        'country': 'RU',
+        'state': '20',
+        'city': 39928
+    }
+}]
+```
