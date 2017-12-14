@@ -9,6 +9,7 @@ const EntityPlayers = require('../src/entity/entityPlayers');
 const EntityFriends = require('../src/entity/entityFriends');
 const EntityPlayerAchievements = require('../src/entity/entityPlayerAchievements');
 const EntityGames = require('../src/entity/entityGames');
+const EntityGame = require('../src/entity/entityGame');
 
 const STEAM_KEY = process.env.STEAM_KEY;
 
@@ -99,6 +100,21 @@ describe('Steam', function () {
                 assert.equal(res.url, 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?steamid=76561198030288194&key=' + STEAM_KEY + '&format=json&include_appinfo=1');
                 assert.equal(res.method, 'getOwnedGames');
                 assert.isTrue(res.games.length > 0);
+                done();
+            })
+            .catch(err => done(err));
+    });
+
+    it('getSchemaForGame', (done) => {
+        steam.getSchemaForGame('305620', 'russian')
+            .then(res => {
+                assert.instanceOf(res, EntityGame);
+                assert.equal(res.url, 'http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?appid=305620&l=russian&key=' + STEAM_KEY);
+                assert.equal(res.method, 'getSchemaForGame');
+                assert.isTrue(res.stats.length > 0);
+                assert.isTrue(res.achievements.length > 0);
+                assert.equal(res.gameName, 'The Long Dark -- Sandbox Alpha v.077');
+                assert.equal(res.gameVersion, '21');
                 done();
             })
             .catch(err => done(err));

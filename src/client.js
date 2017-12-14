@@ -10,6 +10,7 @@ const EntityPlayers = require('./entity/entityPlayers');
 const EntityFriends = require('./entity/entityFriends');
 const EntityPlayerAchievements = require('./entity/entityPlayerAchievements');
 const EntityGames = require('./entity/entityGames');
+const EntityGame = require('./entity/entityGame');
 
 class SteamClient {
     static get methods() {
@@ -96,6 +97,20 @@ class SteamClient {
                 },
                 'key': true,
                 'entity': (data, method, url) => { return new EntityGames(data, method, url); }
+            },
+            'getSchemaForGame': {
+                'name': 'getSchemaForGame',
+                'url': {
+                    'protocol': 'http',
+                    'host': 'api.steampowered.com',
+                    'path': '/ISteamUserStats/GetSchemaForGame/v2/'
+                },
+                'args': ['appid', 'l'],
+                'defaults': {
+                    'l': 'english'
+                },
+                'key': true,
+                'entity': (data, method, url) => { return new EntityGame(data, method, url); }
             }
         }
     }

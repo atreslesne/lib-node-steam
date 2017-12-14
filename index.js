@@ -46,6 +46,14 @@ class Steam {
             'steamid': playerId
         });
     }
+
+    getSchemaForGame(appId, language) {
+        if (!language) language = 'english';
+        return this.client.request('getSchemaForGame', {
+            'appid': appId,
+            'l': language
+        });
+    }
 }
 
 module.exports = Steam;

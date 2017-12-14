@@ -238,3 +238,47 @@ steam.getOwnedGames('76561198030288194')
     logo: 'http://media.steampowered.com/steamcommunity/public/images/apps/220/e4ad9cf1b7dc8475c1118625daf9abd4bdcbcad0.jpg'
 }]
 ```
+
+### getSchemaForGame
+
+Метод возвращает подробную информацию по указанной игре.
+Для вызова метода необходим ключ Steam API Key.
+
+`getSchemaForGame(appId[, language])`
+
+* `appId` - идентификатор игры;
+* `language` - язык (по-умолчанию english).
+
+```js
+const Steam = require('steam-web-api');
+const steam = new Steam('STEAM_API_KEY');
+
+steam.getSchemaForGame('305620', 'russian')
+    .then(result => {
+        console.log(result.gameName);
+        console.log(result.gameVersion);
+        console.dir(result.stats);
+        console.dir(result.achievements);
+    })
+    .catch(err => console.error(err.message));
+```
+
+Результат:
+
+```js
+The Long Dark -- Sandbox Alpha v.077
+21
+[{
+    name: 'NumGames',
+    defaultValue: 0,
+    displayName: ''
+}]
+[{
+    name: 'Survival_10_Days',
+    title: 'Вы сделали это!',
+    defaultValue: 0,
+    hidden: 0,
+    icon: 'http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/305620/d1afe618d876c30c4c837def9f11dda38fb25007.jpg',
+    iconGray: 'http://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/305620/2bdc4c397dd24691e241b53bffccb66b11282f3d.jpg'
+}]
+```
