@@ -9,6 +9,7 @@ const EntityAchievements = require('./entity/entityAchievements');
 const EntityPlayers = require('./entity/entityPlayers');
 const EntityFriends = require('./entity/entityFriends');
 const EntityPlayerAchievements = require('./entity/entityPlayerAchievements');
+const EntityGames = require('./entity/entityGames');
 
 class SteamClient {
     static get methods() {
@@ -80,6 +81,21 @@ class SteamClient {
                 'defaults': {},
                 'key': true,
                 'entity': (data, method, url) => { return new EntityPlayerAchievements(data, method, url); }
+            },
+            'getOwnedGames': {
+                'name': 'getOwnedGames',
+                'url': {
+                    'protocol': 'http',
+                    'host': 'api.steampowered.com',
+                    'path': '/IPlayerService/GetOwnedGames/v0001/'
+                },
+                'args': ['steamid', 'format', 'include_appinfo'],
+                'defaults': {
+                    'format': 'json',
+                    'include_appinfo': '1'
+                },
+                'key': true,
+                'entity': (data, method, url) => { return new EntityGames(data, method, url); }
             }
         }
     }

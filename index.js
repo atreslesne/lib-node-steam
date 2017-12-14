@@ -40,6 +40,12 @@ class Steam {
             'steamid': playerId
         });
     }
+
+    getOwnedGames(playerId) {
+        return this.client.request('getOwnedGames', {
+            'steamid': playerId
+        });
+    }
 }
 
 module.exports = Steam;

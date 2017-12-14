@@ -203,3 +203,38 @@ Team Fortress 2
     date: 0
 }]
 ```
+
+### getOwnedGames
+
+Метод возвращает информацию об играх пользователя.
+Для вызова метода необходим ключ Steam API Key.
+
+`getOwnedGames(playerId)`
+
+* `playerId` - идентификатор пользователя.
+
+```js
+const Steam = require('steam-web-api');
+const steam = new Steam('STEAM_API_KEY');
+
+steam.getOwnedGames('76561198030288194')
+    .then(result => {
+        console.dir(result.games);
+    })
+    .catch(err => console.error(err.message));
+```
+
+Результат:
+
+```js
+[{
+    id: 220,
+    name: 'Half-Life 2',
+    playtime: {
+        'forever': 1060,
+        '2weeks': 0
+    },
+    icon: 'http://media.steampowered.com/steamcommunity/public/images/apps/220/fcfb366051782b8ebf2aa297f3b746395858cb62.jpg',
+    logo: 'http://media.steampowered.com/steamcommunity/public/images/apps/220/e4ad9cf1b7dc8475c1118625daf9abd4bdcbcad0.jpg'
+}]
+```
