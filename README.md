@@ -1,5 +1,9 @@
 # lib-node-steam
 
+[![Build Status](https://travis-ci.org/atreslesne/lib-node-morpher-ru.svg?branch=master)](https://travis-ci.org/atreslesne/lib-node-steam)
+[![Coverage Status](https://coveralls.io/repos/github/atreslesne/lib-node-steam/badge.svg?branch=master)](https://coveralls.io/github/atreslesne/lib-node-steam?branch=master)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/atreslesne/lib-node-steam/master/LICENSE)
+
 Библиотека для работы со Steam Web API. Официальная документация:
 
 * https://developer.valvesoftware.com/wiki/Steam_Web_API
