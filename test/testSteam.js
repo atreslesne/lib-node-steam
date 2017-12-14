@@ -6,6 +6,7 @@ const Steam = require('../index');
 const EntityNews = require('../src/entity/entityNews');
 const EntityAchievements = require('../src/entity/entityAchievements');
 const EntityPlayers = require('../src/entity/entityPlayers');
+const EntityFriends = require('../src/entity/entityFriends');
 
 const STEAM_KEY = process.env.STEAM_KEY;
 
@@ -59,6 +60,18 @@ describe('Steam', function () {
                         'city': 39928
                     }
                 });
+                done();
+            })
+            .catch(err => done(err));
+    });
+
+    it('getFriendList', (done) => {
+        steam.getFriendList('76561198030288194')
+            .then(res => {
+                assert.instanceOf(res, EntityFriends);
+                assert.equal(res.url, 'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?steamid=76561198030288194&key=' + STEAM_KEY + '&relationship=friend');
+                assert.equal(res.method, 'getFriendList');
+                assert.isTrue(res.friends.length > 0);
                 done();
             })
             .catch(err => done(err));

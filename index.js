@@ -27,6 +27,12 @@ class Steam {
             'steamids': players
         });
     }
+
+    getFriendList(playerId) {
+        return this.client.request('getFriendList', {
+            'steamid': playerId
+        });
+    }
 }
 
 module.exports = Steam;

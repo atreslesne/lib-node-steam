@@ -7,6 +7,7 @@ const SteamError = require('./error');
 const EntityNews = require('./entity/entityNews');
 const EntityAchievements = require('./entity/entityAchievements');
 const EntityPlayers = require('./entity/entityPlayers');
+const EntityFriends = require('./entity/entityFriends');
 
 class SteamClient {
     static get methods() {
@@ -52,6 +53,20 @@ class SteamClient {
                 'defaults': {},
                 'key': true,
                 'entity': (data, method, url) => { return new EntityPlayers(data, method, url); }
+            },
+            'getFriendList': {
+                'name': 'getFriendList',
+                'url': {
+                    'protocol': 'http',
+                    'host': 'api.steampowered.com',
+                    'path': '/ISteamUser/GetFriendList/v0001/'
+                },
+                'args': ['steamid', 'relationship'],
+                'defaults': {
+                    'relationship': 'friend'
+                },
+                'key': true,
+                'entity': (data, method, url) => { return new EntityFriends(data, method, url); }
             }
         }
     }

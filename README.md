@@ -103,6 +103,7 @@ steam.getGlobalAchievementPercentagesForApp(440)
 ### getPlayerSummaries
 
 Метод возвращает информацию о профиле пользователя по указанному идентификатору/идентификаторам.
+Для вызова метода необходим ключ Steam API Key.
 
 `getPlayerSummaries([players])`
 
@@ -110,7 +111,7 @@ steam.getGlobalAchievementPercentagesForApp(440)
 
 ```js
 const Steam = require('steam-web-api');
-const steam = new Steam();
+const steam = new Steam('STEAM_API_KEY');
 
 steam.getPlayerSummaries('76561198030288194')
     .then(result => {
@@ -138,5 +139,34 @@ steam.getPlayerSummaries('76561198030288194')
         'state': '20',
         'city': 39928
     }
+}]
+```
+
+### getFriendList
+
+Метод возвращает идентификаторы друзей указанного пользователя.
+Для вызова метода необходим ключ Steam API Key.
+
+`getFriendList(playerId)`
+
+* `playerId` - идентификатор игрока.
+
+```js
+const Steam = require('steam-web-api');
+const steam = new Steam('STEAM_API_KEY');
+
+steam.getFriendList('76561198030288194')
+    .then(result => {
+        console.dir(result.friends);
+    })
+    .catch(err => console.error(err.message));
+```
+
+Результат:
+
+```js
+[{
+    id: 'FRIEND_ID',
+    since: 1312738668
 }]
 ```
